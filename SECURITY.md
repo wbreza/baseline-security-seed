@@ -13,7 +13,7 @@ The following components are required to be pre-installed when developing locall
 
 1. [Python version >= 3.10.0](https://www.python.org/downloads/)
 
-> You can optionally open this app in a [VS Code remote container](https://code.visualstudio.com/docs/remote/containers) OR [GitHub Codespace](https://github.com/features/codespaces). 
+> You can optionally open this app in a [VS Code remote container](https://code.visualstudio.com/docs/remote/containers) OR [GitHub Codespace](https://github.com/features/codespaces).
 
 ## Setup
 
@@ -59,6 +59,8 @@ You can manually detect secrets outside of the pre-commit hook by running the fo
 ```bash
 git diff --staged --name-only -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline
 ```
+
+> This command is similar to what is run by the pre-commit hook to ensure currently staged files do not contain and secrets.
 
 #### Scanning all tracked files
 
