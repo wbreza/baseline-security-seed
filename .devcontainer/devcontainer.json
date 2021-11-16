@@ -48,5 +48,8 @@
 	"features": {
 		"git": "latest",
 		"azure-cli": "latest"
-	}
+	},
+
+	// Setup security secret detection and pre-commit hooks
+	"postCreateCommand": "bash ./scripts/init-repo.sh"
 }
