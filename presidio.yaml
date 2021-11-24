@@ -1,0 +1,29 @@
+language: en
+
+ignore:
+  - .gitignore
+  - .devcontainer/**/*
+  - .github/**/*
+  - presidio.yaml
+  - requirements.txt
+
+entities:
+  - CREDIT_CARD
+  - EMAIL_ADDRESS
+  - PHONE_NUMBER
+  - US_BANK_NUMBER
+  - US_DRIVER_LICENSE
+  - US_ITIN
+  - US_PASSPORT
+  - US_SSN
+  - MR_TITLE
+
+# recognizers:
+#   - name: Mr. Recognizer
+#     supported_language: en
+#     supported_entity: MR_TITLE
+#     deny_list:
+#       - Mr
+#       - Mr.
+#       - Mister
+#       - guys
