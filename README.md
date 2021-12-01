@@ -6,5 +6,3 @@ This repo includes baseline security that includes the following:
 - CodeQL Code Analysis
 
 For more information regarding security setup review the [security docs](./SECURITY.md).
-
-Hello Mister How are you?
