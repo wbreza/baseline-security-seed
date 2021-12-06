@@ -11,7 +11,7 @@ This repo is configured to detect secrets at multiple levels
 
 The following components are required to be pre-installed when developing locally.
 
-1. [Python version >= 3.10.0](https://www.python.org/downloads/)
+1. [Python version >= 3.8](https://www.python.org/downloads/)
 
 > You can optionally open this app in a [VS Code remote container](https://code.visualstudio.com/docs/remote/containers) OR [GitHub Codespace](https://github.com/features/codespaces).
 
@@ -24,15 +24,20 @@ The baseline security supports 2 modes of development. Developing Locally and us
 Git pre-commit hooks require setup before they can start working as designed.
 To streamline this process run the following:
 
+The pre-commit framework and detect secrets tooling requires Python
+
 ```bash
-. ./scripts/init-repo.sh
+# Initialize & activate a python virtual environment
+. ./python-virtual-env.sh
+
+# Install pre-commit hooks
+. ./.devcontainer/scripts/init-repo.sh
 ```
 
 > Don't forget the *space* between the dots above
 
 The `init-repo.sh` script performs the following:
 
-1. Creates and activates a Python virtual environment
 1. Installs python package dependencies via pip
    - [pre-commit](https://github.com/pre-commit/pre-commit) - For git pre-commit hook framework
    - [detect-secrets](https://github.com/Yelp/detect-secrets) - Package developed by Yelp! for secret detection
