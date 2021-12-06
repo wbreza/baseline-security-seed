@@ -4,8 +4,3 @@ repos:
     hooks:
       - id: detect-secrets
         args: ["--baseline", ".secrets.baseline"]
-  - repo: https://github.com/wbreza/presidio-hook
-    rev: 0.0.4
-    hooks:
-      - id: presidio
-        args: ["--config", "./presidio.yaml"]

@@ -7,11 +7,10 @@ parent_path=$(
 )
 cd "$parent_path"
 
-echo -n 'Creating python virtual environment...'
+echo 'Creating python virtual environment...'
 python -m venv ../.venv
-echo 'done'
 
-echo -n 'Activating python virtual environment...'
+echo 'Activating python virtual environment...'
 
 if [ "$(uname)" == "Darwin" ]; then
     . ../.venv/bin/activate
@@ -23,11 +22,9 @@ elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
     . ../.venv/scripts/activate
 fi
 
-echo 'done'
-
 echo 'Installing repo dependencies...'
 pip install -r ../requirements.txt
 
-echo -n 'Installing pre-commit hooks for first time setup...'
+echo 'Installing pre-commit hooks for first time setup...'
 pre-commit install
 pre-commit run --all-files
