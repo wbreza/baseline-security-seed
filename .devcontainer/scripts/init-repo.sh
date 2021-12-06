@@ -7,21 +7,6 @@ parent_path=$(
 )
 cd "$parent_path"
 
-echo 'Creating python virtual environment...'
-python -m venv ../.venv
-
-echo 'Activating python virtual environment...'
-
-if [ "$(uname)" == "Darwin" ]; then
-    . ../.venv/bin/activate
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    . ../.venv/bin/activate
-elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-    . ../.venv/scripts/activate
-elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW64_NT" ]; then
-    . ../.venv/scripts/activate
-fi
-
 echo 'Installing repo dependencies...'
 pip install -r ../requirements.txt
 
