@@ -3,4 +3,12 @@ repos:
     rev: v1.0.3
     hooks:
       - id: detect-secrets
-        args: ["--baseline", ".secrets.baseline"]
+        args:
+          [
+            "--baseline",
+            ".secrets.baseline",
+            "--word-list",
+            "secrets-wordlist.txt",
+          ]
+        additional_dependencies:
+          - pyahocorasick
