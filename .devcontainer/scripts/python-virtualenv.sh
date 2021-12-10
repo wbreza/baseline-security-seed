@@ -12,7 +12,6 @@ cd "$parent_path"
 
 echo 'Creating python virtual environment...'
 python -m venv ../.venv
-sudo chown codespace -R ../.venv
 
 echo 'Activating python virtual environment...'
 
