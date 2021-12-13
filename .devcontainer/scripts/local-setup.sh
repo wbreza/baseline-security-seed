@@ -8,8 +8,6 @@ parent_path=$(
 
 current_path=$(pwd -P)
 
-echo $current_path
-
 cd "$parent_path"
 
 . ./python-virtualenv.sh

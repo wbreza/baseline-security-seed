@@ -10,8 +10,24 @@ current_path=$(pwd -P)
 
 cd "$parent_path"
 
+PYTHON_REF=null
+
+if which python3 > /dev/null 2>&1; then
+    PYTHON_REF="python3"
+else
+    if which python > /dev/null 2>&1; then
+        PYTHON_REF="python"
+    else
+        echo "Python is not installed.  Install Python 3.8 and try again"
+        exit 1
+    fi
+fi
+
+PYTHON_VERSION=$($PYTHON_REF --version 2>&1 | awk '{print $2}')
+echo "Found Python with version $PYTHON_VERSION"
+
 echo 'Creating python virtual environment...'
-python -m venv ../.venv
+$PYTHON_REF -m venv ../.venv
 
 echo 'Activating python virtual environment...'
 
