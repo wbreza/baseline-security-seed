@@ -10,6 +10,7 @@ current_path=$(pwd -P)
 
 cd "$parent_path"
 
+echo "Checking python version..."
 PYTHON_REF=null
 
 if which python3 > /dev/null 2>&1; then
