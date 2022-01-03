@@ -13,6 +13,8 @@ cd "$parent_path"
 echo "Changing owner on .git/hooks directory..."
 sudo chown codespace -R ../../.git/hooks
 
+sudo apt install python3.8-venv
+
 # Create & activate python virtual environment
 . ./python-virtualenv.sh
 

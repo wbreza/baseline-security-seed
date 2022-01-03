@@ -2,6 +2,18 @@
 
 ## Secret Detection
 
+Secret Detection aims to prevent the unintentional leak of sensitive information including: passwords, authentication tokens, and private keys. It checks source files and configuration files to detect well-known and common patterns that look like secrets or credentials and reports findings that are potentially risky to share.
+
+### Goal
+
+Overall we want to help developers write better code and worry less about common security mistakes. Our goal is to provide Secret Detection as a part of the standard software development lifecycle (SDLC). This means that Secret Detection is executed every time a new commit is pushed to a branch.
+
+This package is designed with the enterprise client in mind: providing a backwards compatible, systematic means of:
+
+- Preventing new secrets from entering the code base,
+- Detecting if such preventions are explicitly bypassed, and
+- Providing a checklist of secrets to roll, and migrate off to a more secure storage.
+
 This repo is configured to detect secrets at multiple levels
 
 1. At **development** time via git pre-commit hooks
@@ -11,9 +23,10 @@ This repo is configured to detect secrets at multiple levels
 
 The following components are required to be pre-installed when developing locally.
 
-1. [Python version >= 3.8](https://www.python.org/downloads/)
+1. [Visual Studio Code](https://code.visualstudio.com/Download)
+1. [Python version 3.8](https://www.python.org/downloads/)
 
-> You can optionally open this app in a [VS Code remote container](https://code.visualstudio.com/docs/remote/containers) OR [GitHub Codespace](https://github.com/features/codespaces).
+> You can optionally open this repo in a [VS Code remote container](https://code.visualstudio.com/docs/remote/containers) OR [GitHub Codespace](https://github.com/features/codespaces).
 
 ## Setup
 
@@ -27,18 +40,16 @@ To streamline this process run the following:
 The pre-commit framework and detect secrets tooling requires Python
 
 ```bash
-# Initialize & activate a python virtual environment
-. ./python-virtual-env.sh
-
-# Install pre-commit hooks
-. ./.devcontainer/scripts/init-repo.sh
+# Initialize and setup local environment
+. .devcontainer/scripts/local-setup.sh
 ```
 
 > Don't forget the *space* between the dots above
 
-The `init-repo.sh` script performs the following:
+The `local-setup.sh` script performs the following:
 
-1. Installs python package dependencies via pip
+1. Creates and activates a [Python virtual environment](https://docs.python.org/3.8/library/venv.html)
+1. Installs python package dependencies via [pip](https://pip.pypa.io/en/stable/)
    - [pre-commit](https://github.com/pre-commit/pre-commit) - For git pre-commit hook framework
    - [detect-secrets](https://github.com/Yelp/detect-secrets) - Package developed by Yelp! for secret detection
 1. Configures pre-commits hooks from the `.pre-commit-config.yaml` config file.
@@ -46,7 +57,7 @@ The `init-repo.sh` script performs the following:
 
 ### Using Dev Container / Codespace
 
-Good news! The dev container is automatically configured and runs the `init-repo.sh` script as part of the dev container `postCreateCommand`. You repo will automatically be protected and secure.
+Good news! The dev container is automatically configured and runs the setup scripts as part of the dev container `postCreateCommand`. You repo will automatically be protected and secure.
 
 ## Running Secret Scanning
 
