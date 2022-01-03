@@ -13,7 +13,7 @@ cd "$parent_path"
 echo "Changing owner on .git/hooks directory..."
 sudo chown codespace -R ../../.git/hooks
 
-sudo apt install python3.8-venv
+sudo apt install -y python3.8-venv
 
 # Activate & install detect-secrets
 . ../../scripts/detect-secrets/init.sh
