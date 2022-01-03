@@ -15,11 +15,8 @@ sudo chown codespace -R ../../.git/hooks
 
 sudo apt install python3.8-venv
 
-# Create & activate python virtual environment
-. ./python-virtualenv.sh
-
-# Initialize Git pre-commit hooks
-. ./init-repo.sh
+# Activate & install detect-secrets
+. ../../scripts/detect-secrets/init.sh
 
 # Detect and run oryx build from universal dev container
 oryx build -p virtualenv_name=.venv --log-file /tmp/oryx-build.log --manifest-dir /tmp || echo 'Could not auto-build. Skipping.'
