@@ -32,21 +32,21 @@ The following components are required to be pre-installed when developing locall
 
 The baseline security supports 2 modes of development. Developing Locally and using Dev Containers or Codespaces.
 
+This template was initialized from the [detect-secrets pre-commit hook repo](https://github.com/wbreza/pre-commit-hooks/tree/main/detect-secrets).
+
 ### Developing Locally
 
 Git pre-commit hooks require setup before they can start working as designed.
 To streamline this process run the following:
 
-The pre-commit framework and detect secrets tooling requires Python
-
 ```bash
-# Initialize and setup local environment
-. .devcontainer/scripts/local-setup.sh
+# Install and configures the pre-commit hook
+./scripts/detect-secrets/init.sh
 ```
 
-> Don't forget the *space* between the dots above
+> Review [local developer setup docs](https://github.com/wbreza/pre-commit-hooks/blob/main/detect-secrets/README.md#local-developer-setup) for more detailed info
 
-The `local-setup.sh` script performs the following:
+The `init.sh` script performs the following:
 
 1. Creates and activates a [Python virtual environment](https://docs.python.org/3.8/library/venv.html)
 1. Installs python package dependencies via [pip](https://pip.pypa.io/en/stable/)
@@ -59,53 +59,14 @@ The `local-setup.sh` script performs the following:
 
 Good news! The dev container is automatically configured and runs the setup scripts as part of the dev container `postCreateCommand`. You repo will automatically be protected and secure.
 
-## Running Secret Scanning
+## Getting started
 
 After following the [setup](#Setup) section secret scanning will automatically run before all local commits.
-If a secret is detected it will fail your commit and alert you of the detected secrets.
+If a secret is detected it will fail your commit and alert you of the detected secrets mitigation options.
 
-For more information of configuring secret detection review the [usage](https://github.com/Yelp/detect-secrets#usage) guidelines in the detect-secrets repo.
+Review the [getting started docs](https://github.com/wbreza/pre-commit-hooks/blob/main/detect-secrets/README.md#getting-started) for detailed info on generating baselines, auditing kwown secrets as well as scanning and reporting against your baseline.
 
-### Blocking Secrets not in Baseline
 
-You can manually detect secrets outside of the pre-commit hook by running the following commands:
 
-#### Scanning Staged files only
+For full information of configuring secret detection review the [Yelp! detect secrets usage guide](https://github.com/Yelp/detect-secrets#usage) guidelines in the detect-secrets repo.
 
-```bash
-git diff --staged --name-only -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline
-```
-
-> This command is similar to what is run by the pre-commit hook to ensure currently staged files do not contain and secrets.
-
-#### Scanning all tracked files
-
-```bash
-git ls-files -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline
-```
-
-> This is the command that is run as part of the GitHub action to catch any secrets that slip through pre-commit hooks
-
-### Adding Secrets to Baseline
-
-There are occasions where the tooling may catch a false positive.
-If this occurs you can perform the following:
-
-#### Scans repo and adds new secrets
-
-```bash
-detect-secrets scan --baseline .secrets.baseline
-```
-
-> For more information refer to the [official docs](https://github.com/Yelp/detect-secrets#adding-secrets-to-baseline)
-
-### Auditing Secrets in Baseline
-
-Auditing a baseline allows analysts to label results, and optimize plugins for
-the highest signal-to-noise ratio for their environment.
-
-```bash
-detect-secrets audit .secrets.baseline
-```
-
-> For more information refer to the [official docs](https://github.com/Yelp/detect-secrets#auditing-secrets-in-baseline)
